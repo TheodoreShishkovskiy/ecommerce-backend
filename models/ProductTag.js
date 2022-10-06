@@ -3,11 +3,13 @@ const sequelize = require('../config/connection');
 
 class ProductTag extends Model {}
 
-// ProductTag Model columns
+// ProductTag model columns
 
 ProductTag.init(
   {
+// Defines the id properties in ProductTag model
     id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
+// Defines the tag_name properties in ProductTag model
     tag_name: { type: DataTypes.STRING }
   },
   {
