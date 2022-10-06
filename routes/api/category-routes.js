@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   //Class info - find all categories
   //Class info - be sure to include its associated Products
 // Find all categories and includes Products assoictated
-  Category.findByAll ({include: [Product]})
+Category.findByAll ({include: [Product]})
   .then(dataInfo => {
     console.log(dataInfo)
     res.status(200).json(dataInfo)
@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
   //Class info - find one category by its `id` value
   //Class info - be sure to include its associated Products
 // Finds one category by its id value
-  Category.findByPk(req.params.id, {include: [Product]})
+Category.findByPk(req.params.id, {include: [Product]})
   .then(dataInfo => {
     console.log(dataInfo)
     res.status(200).json(dataInfo)
@@ -27,6 +27,12 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   //Class info - create a new category
+// Creates a new category in the Category Model
+Category.create(req.body)
+  .then(dataInfo => {
+    console.log(dataInfo)
+    res.status(200).json(dataInfo)
+  }).catch(err => res.status(500).json(err))
 });
 
 router.put('/:id', (req, res) => {
