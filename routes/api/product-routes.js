@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
+//Class info - The `/api/products` endpoint
 
 // get all products
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  //Class info - find all products
+  //Class info - be sure to include its associated Category and Tag data
 // Find all Products including its category and tag
 Product.findAll ({Include: [Category, Tag]})
  .then(dataInfo => {
@@ -15,13 +15,25 @@ Product.findAll ({Include: [Category, Tag]})
  }).catch(err => res.status(500).json(err))
 });
 
-// get one product
+//Class info - get one product
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  //Class info - find a single product by its `id`
+  //Class info - be sure to include its associated Category and Tag data
+//Finds the Product by its id , which is assoiciated with Tag and Category data
+Product.findOne({ 
+  where: { id: req.params.id},
+  attributes : ['id', 'product_name', 'price', 'stock', 'category_id'],
+  include: [
+    {model: Category, attributes: ['id', 'category_name']},
+    {model: Tag, attributes: ['id', 'tag_name']}
+  ]
+}).then(dataInfo => {
+  console.log(dataInfo)
+  res.status(200).json(dataInfo)
+}).catch(err => res.status(500).json(err))
 });
 
-// create new product
+//Class info - create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
