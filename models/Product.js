@@ -13,39 +13,26 @@ Product.init(
   {
 // This defines the id column with the required keys
     id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true,
     },
 // This defines the product_name column with the required keys
     product_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING, allowNull: false,
     },
 // This defines the price column with required keys
 // Datatype decimal for price in order to give an expression in [$4.99] format
     price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
+      type: DataTypes.DECIMAL, allowNull: false,
     },
 // This defines the stock column with the required keys
     stock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 10,
-      validate: {
-        isNumeric: true
-      }
+      type: DataTypes.INTEGER, allowNull: false, defaultValue: 10, validate: { isNumeric: true }
     },
 // This defines the category_id column with the required keys
 // This also allows for product to be found in category
     category_id: {
       type: DataTypes.INTEGER,
-      references : {
-        model: "category",
-        key: "id"
-      }
+      references : { model: "category", key: "id" }
     }
   },
 
