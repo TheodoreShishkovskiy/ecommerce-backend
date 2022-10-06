@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   //Class info - find all categories
   //Class info - be sure to include its associated Products
 // Find all categories and includes Products assoictated
-Category.findByAll ({include: [Product]})
+Category.findAll ({include: [Product]})
   .then(dataInfo => {
     console.log(dataInfo)
     res.status(200).json(dataInfo)
