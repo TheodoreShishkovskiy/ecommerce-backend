@@ -1,28 +1,34 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
+//Class info - The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  //Class info - find all categories
+  //Class info - be sure to include its associated Products
+// Find all categories and includes Products assoictated
+  Category.findByAll ({include: [Product]})
+  .then(dataInfo => {
+    console.log(dataInfo)
+    res.status(200).json(dataInfo)
+  }).catch(err => res.status(500).json(err))
 });
 
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+  //Class info - find one category by its `id` value
+  //Class info - be sure to include its associated Products
 });
 
 router.post('/', (req, res) => {
-  // create a new category
+  //Class info - create a new category
 });
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  //Class info - update a category by its `id` value
 });
 
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+  //Class info - delete a category by its `id` value
 });
 
 module.exports = router;
