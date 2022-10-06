@@ -37,6 +37,12 @@ Category.create(req.body)
 
 router.put('/:id', (req, res) => {
   //Class info - update a category by its `id` value
+// Updates one category by its Id value
+Category.update (req.body, {where:{id:req.params.id}})
+  .then(dataInfo => {
+    console.log(dataInfo)
+    res.status(200).json(dataInfo)
+  }).catchThrow(err => res.status(500).json(err))
 });
 
 router.delete('/:id', (req, res) => {
