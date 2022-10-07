@@ -34,6 +34,12 @@ Tag.findOne ({where: {id: req.params.id},
 
 router.post('/', (req, res) => {
   //Class info - create a new tag
+// This will create a new Tag in the Tag Model
+Tag.create(req.body, {where: {id: req.params.id}})
+.then(dataInfo => {
+  console.log(dataInfo)
+  res.status(200).json(dataInfo)
+}).catch(err => res.status(400).json(err))
 });
 
 router.put('/:id', (req, res) => {
