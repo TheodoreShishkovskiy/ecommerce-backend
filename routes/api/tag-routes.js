@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
   //Class info - be sure to include its associated Product data
 // Find one Tag by its id with its assoication to Product Data
 Tag.findOne ({where: {id: req.params.id},
-  attributes: ['id', 'tage_name'],
+  attributes: ['id', 'tag_name'],
   include: [{model: Product, attributes: ['id', 'product_name', 'price', 'stock', 'category_id']}]
 })
   .then(dataInfo => {
